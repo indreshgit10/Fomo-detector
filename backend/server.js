@@ -1,14 +1,20 @@
 require("dotenv").config();
-const express= require("express");
+const express = require("express");
+const connectDB = require("./config/db");
 
-const app= express();
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-const PORT= 5000;
+connectDB();
 
-app.get('/', (req,res)=>{
-    res.send("Hello from Backend");
-})
+app.use(express.json());
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on PORT ${PORT}`);
-})
+app.get("/", (req, res) => {
+  res.send("Hello from Backend");
+});
+
+app.use("/api/fomo", require("./routes/fomo"));
+
+app.listen(PORT, () => {
+  console.log(`Server running on PORT ${PORT}`);
+});
