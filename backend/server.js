@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/fomo", require("./routes/fomo"));
+app.use("/api/auth", require("./routes/auth"));
 
 app.listen(PORT, () => {
   console.log(`Server running on PORT ${PORT}`);
